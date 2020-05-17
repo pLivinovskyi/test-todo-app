@@ -11,6 +11,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { PreviewItemDialogComponent } from './components/dialogs/preview-item-dialog/preview-item-dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     DashboardPageComponent,
     TodoListComponent,
     ConfirmationDialogComponent,
-    PreviewItemDialogComponent
+    PreviewItemDialogComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

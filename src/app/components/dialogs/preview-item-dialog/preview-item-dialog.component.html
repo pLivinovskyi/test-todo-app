@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onSubmitForm(form)">
+    <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+    </mat-form-field>
+    <button mat-button type="submit"[disabled]="form.invalid">{{data.type}}</button>
+    <button mat-button color="warn"
+            (click)="removeRecord($event)" *ngIf="data.type !== dialogTypes.CREATE">Remove
+    </button>
+</form>
