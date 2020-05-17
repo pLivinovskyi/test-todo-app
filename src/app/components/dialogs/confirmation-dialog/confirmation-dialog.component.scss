@@ -1,0 +1,11 @@
+.confirmation_title {
+  padding: 25px 15px;
+  font-weight: 400;
+  &__part {
+    text-transform: lowercase;
+  }
+}
+.confirmation-buttons {
+  display: flex;
+  justify-content: center;
+}

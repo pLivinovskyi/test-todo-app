@@ -20,6 +20,7 @@ export class DashboardPageComponent implements OnInit {
 
   createRecord() {
     const dialog = this.dialog.open(PreviewItemDialogComponent, {
+      width: '450px',
       data: {type: DialogTypes.CREATE}
     });
     dialog.afterClosed().subscribe(res => {

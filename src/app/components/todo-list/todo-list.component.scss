@@ -1,6 +1,18 @@
 :host {
   display: block;
 }
+
 table {
   width: 100%;
+
+  .mat-row:hover {
+    cursor: pointer;
+    background: #f6f6f6;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    text-align: center;
+  }
+
 }

@@ -1,15 +1,30 @@
-<form [formGroup]="form" (ngSubmit)="onSubmitForm(form)">
-    <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" formControlName="name">
-    </mat-form-field>
+<div class="dialog-wrapper">
+    <form [formGroup]="form" (ngSubmit)="onSubmitForm(form)">
+        <div class="separator">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="What you have to do" formControlName="name">
+                <mat-error *ngIf="form.get('name').hasError('required')">
+                    Field is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="separator">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Here you can describe your plans" rows="5"
+                          formControlName="description"></textarea>
+                <mat-error *ngIf="form.get('description').hasError('required')">
+                    Field is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Leave a comment</mat-label>
-        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
-    </mat-form-field>
-    <button mat-button type="submit"[disabled]="form.invalid">{{data.type}}</button>
-    <button mat-button color="warn"
-            (click)="removeRecord($event)" *ngIf="data.type !== dialogTypes.CREATE">Remove
-    </button>
-</form>
+        <div class="dialog-buttons">
+            <button mat-button type="submit" [disabled]="form.invalid">{{data.type}}</button>
+            <button mat-button color="warn"
+                    (click)="removeRecord($event)" *ngIf="data.type !== dialogTypes.CREATE">Remove
+            </button>
+        </div>
+    </form>
+</div>
