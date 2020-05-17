@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+<table mat-table [dataSource]="dataProviderService.dataSource$ | async"   class="mat-elevation-z8">
 
     <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -30,5 +30,5 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToShow"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToShow;" (click)="getRecord(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToShow;" (click)="showRecord(row)"></tr>
 </table>

@@ -12,20 +12,19 @@ import {ConfirmationDialogService} from '../../services/confirmation-dialog.serv
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  dataSource: TodoItem[] = [];
   columnsToShow: string [] = ['position', 'name', 'createdAt', 'editedAt', 'action'];
 
   constructor(
-    private dataProviderService: DataProviderService,
+    public dataProviderService: DataProviderService,
     private dialog: MatDialog,
     private confirmationDialogService: ConfirmationDialogService) {
   }
 
   ngOnInit(): void {
-    this.updateData();
+    this.dataProviderService.updateData();
   }
 
-  getRecord(tableRow: TodoItem): void {
+  showRecord(tableRow: TodoItem): void {
   }
 
   editRecord(event, tableRow: TodoItem): void {
@@ -37,9 +36,14 @@ export class TodoListComponent implements OnInit {
     });
     dialog.afterClosed().subscribe(result => {
       if (result.type === DialogTypes.DELETE) {
-        this.removeRecord(tableRow.id);
+        this.deleteRecord(event, tableRow);
       } else if (result.type === DialogTypes.EDIT) {
-        this.updateRecord(tableRow.id, {...tableRow, ...result.values});
+        this.confirmationDialogService.openConfirmationDialog(DialogTypes.EDIT)
+          .subscribe(isConfirmed => {
+            if (isConfirmed) {
+              this.updateRecord(tableRow.id, {...tableRow, ...result.values});
+            }
+          });
       }
     });
   }
@@ -50,7 +54,7 @@ export class TodoListComponent implements OnInit {
     this.confirmationDialogService.openConfirmationDialog(DialogTypes.DELETE)
       .subscribe(isConfirmed => {
         if (isConfirmed) {
-          this.removeRecord(tableRow.id);
+          this.dataProviderService.removeRecord(tableRow.id);
         }
       });
   }
@@ -60,14 +64,6 @@ export class TodoListComponent implements OnInit {
       .then(result => this.dataSource = result);
   }
 
-  private removeRecord(id: number): void {
-    this.dataProviderService.deleteItem(id)
-      .then(result => {
-        const index = this.dataSource.findIndex(el => el.id === id);
-        this.dataSource.splice(index, 1);
-        this.dataSource = this.dataSource.slice();
-      });
-  }
 
   private updateRecord(recordId: number, newValues: any) {
     this.dataProviderService.updateRecord(recordId, newValues)
