@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material';
 import {PreviewItemDialogComponent} from '../../components/dialogs/preview-item-dialog/preview-item-dialog.component';
 import {DialogTypes} from '../../enums';
 import {DataProviderService} from '../../services/data-provider.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -11,7 +12,7 @@ import {DataProviderService} from '../../services/data-provider.service';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private dataProviderService: DataProviderService) {
+  constructor(private dialog: MatDialog, private dataProviderService: DataProviderService, private router: Router) {
   }
 
   ngOnInit() {
@@ -26,5 +27,10 @@ export class DashboardPageComponent implements OnInit {
         this.dataProviderService.createRecord(res.values);
       }
     });
+  }
+
+  logOut() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['login']);
   }
 }

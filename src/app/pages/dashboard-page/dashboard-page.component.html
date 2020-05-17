@@ -1,2 +1,12 @@
-<button mat-button  (click)="createRecord()">Add new record</button>
-<app-todo-list></app-todo-list>
+<div class="dashboard-wrapper">
+    <h1 class="dashboard-wrapper__title">User dashboard</h1>
+    <div class="dashboard-container">
+        <div class="dashboard_nav">
+            <button mat-button (click)="createRecord()">Add new record</button>
+            <button mat-button (click)="logOut()">Log out</button>
+        </div>
+        <div class="dashboard_content">
+            <app-todo-list></app-todo-list>
+        </div>
+    </div>
+</div>

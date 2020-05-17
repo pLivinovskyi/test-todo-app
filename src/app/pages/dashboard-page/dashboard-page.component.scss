@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+.dashboard-wrapper {
+  &__title {
+    text-align: center;
+    padding: 25px 0;
+  }
+  .dashboard-container {
+    width: 75%;
+    margin: 0 auto;
+    .dashboard_nav {
+      padding: 15px 0;
+    }
+  }
+}
