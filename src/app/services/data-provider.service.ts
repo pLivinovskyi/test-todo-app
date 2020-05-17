@@ -19,10 +19,6 @@ export class DataProviderService {
   }
 
 
-  updateRecord(id, body): Promise<TodoItem> {
-    return this.httpClient.put<TodoItem>(serverApi + 'list/' + id, body).toPromise();
-  }
-
   private getListData(): Promise<TodoItem[]> {
     return this.httpClient.get<TodoItem[]>(serverApi + 'list').toPromise();
   }
@@ -37,7 +33,21 @@ export class DataProviderService {
       });
   }
 
+  public updateCurrentRow(recordId: number, newValues: any) {
+    this.updateRecord(recordId, newValues)
+      .then((result: TodoItem) => {
+        const array = this.dataSource$.value;
+        const index = array.findIndex(el => el.id === recordId);
+        array.splice(index, 1, result);
+        this.dataSource$.next(array.slice());
+      });
+  }
+
   private deleteItem(id: number): Promise<{}> {
     return this.httpClient.delete(serverApi + 'list/' + id).toPromise();
+  }
+
+  private updateRecord(id, body): Promise<TodoItem> {
+    return this.httpClient.put<TodoItem>(serverApi + 'list/' + id, body).toPromise();
   }
 }

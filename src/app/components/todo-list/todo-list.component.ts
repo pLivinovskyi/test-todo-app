@@ -29,21 +29,13 @@ export class TodoListComponent implements OnInit {
 
   editRecord(event, tableRow: TodoItem): void {
     event.stopPropagation();
-
     const dialog = this.dialog.open(PreviewItemDialogComponent, {
       hasBackdrop: false,
       data: {type: DialogTypes.EDIT, currentRow: tableRow}
     });
     dialog.afterClosed().subscribe(result => {
-      if (result.type === DialogTypes.DELETE) {
-        this.deleteRecord(event, tableRow);
-      } else if (result.type === DialogTypes.EDIT) {
-        this.confirmationDialogService.openConfirmationDialog(DialogTypes.EDIT)
-          .subscribe(isConfirmed => {
-            if (isConfirmed) {
-              this.updateRecord(tableRow.id, {...tableRow, ...result.values});
-            }
-          });
+      if (result) {
+        this.dataProviderService.updateCurrentRow(tableRow.id, {...tableRow, ...result.values});
       }
     });
   }
@@ -59,19 +51,7 @@ export class TodoListComponent implements OnInit {
       });
   }
 
-  private updateData() {
-    this.dataProviderService.getListData()
-      .then(result => this.dataSource = result);
-  }
 
 
-  private updateRecord(recordId: number, newValues: any) {
-    this.dataProviderService.updateRecord(recordId, newValues)
-      .then((result: TodoItem) => {
-        const index = this.dataSource.findIndex(el => el.id === recordId);
-        this.dataSource.splice(index, 1, result);
-        this.dataSource = this.dataSource.slice();
-      });
-  }
 
 }
