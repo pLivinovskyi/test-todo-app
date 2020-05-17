@@ -34,8 +34,8 @@ export class DataProviderService {
   }
 
   public updateCurrentRow(recordId: number, newValues: any) {
-    const createdAt = new Date();
-    this.updateRecord(recordId, {...newValues, ...{createdAt}})
+    const editedAt = new Date().toLocaleString();
+    this.updateItem(recordId, {...newValues, ...{editedAt}})
       .then((result: TodoItem) => {
         const array = this.dataSource$.value;
         const index = array.findIndex(el => el.id === recordId);
@@ -44,11 +44,25 @@ export class DataProviderService {
       });
   }
 
+  public createRecord(values) {
+    const createdAt = new Date().toLocaleString();
+    this.createItem({createdAt, updatedAt: createdAt, name: values.name, description: values.description})
+      .then(result => {
+        const array = this.dataSource$.value;
+        array.push(result);
+        this.dataSource$.next(array.slice());
+      });
+  }
+
   private deleteItem(id: number): Promise<{}> {
     return this.httpClient.delete(serverApi + 'list/' + id).toPromise();
   }
 
-  private updateRecord(id, body): Promise<TodoItem> {
-    return this.httpClient.put<TodoItem>(serverApi + 'list/' + id, body).toPromise();
+  private updateItem(id, body): Promise<TodoItem> {
+    return this.httpClient.patch<TodoItem>(serverApi + 'list/' + id, body).toPromise();
+  }
+
+  private createItem(body): Promise<TodoItem> {
+    return this.httpClient.post<TodoItem>(serverApi + 'list', body).toPromise();
   }
 }

@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {PreviewItemDialogComponent} from '../../components/dialogs/preview-item-dialog/preview-item-dialog.component';
+import {DialogTypes} from '../../enums';
+import {DataProviderService} from '../../services/data-provider.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -7,10 +11,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor() {
+  constructor(private dialog: MatDialog, private dataProviderService: DataProviderService) {
   }
 
   ngOnInit() {
   }
 
+  createRecord() {
+    const dialog = this.dialog.open(PreviewItemDialogComponent, {
+      data: {type: DialogTypes.CREATE}
+    });
+    dialog.afterClosed().subscribe(res => {
+      if (res) {
+        this.dataProviderService.createRecord(res.values)
+      }
+    })
+  }
 }
