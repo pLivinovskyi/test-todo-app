@@ -25,12 +25,18 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteRecord(event, tableRow: TodoItem): void {
-
+    event.stopPropagation();
+    this.dataProviderService.deleteItem(tableRow.id)
+      .then(result => {
+        const index = this.dataSource.findIndex(el => el.id === tableRow.id);
+        this.dataSource.splice(index, 1);
+        this.dataSource.slice();
+      });
   }
 
   private updateData() {
     this.dataProviderService.getListData()
-      .then(result => this.dataSource = result)
+      .then(result => this.dataSource = result);
   }
 
 }

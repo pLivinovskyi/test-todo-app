@@ -15,4 +15,8 @@ export class DataProviderService {
   getListData(): Promise<TodoItem[]> {
     return this.httpClient.get<TodoItem[]>(serverApi + 'list').toPromise();
   }
+
+  deleteItem(id: number): Promise<any> {
+    return this.httpClient.delete(serverApi + 'list/' + id).toPromise();
+  }
 }
