@@ -6,14 +6,16 @@ import {AppRoutingModule} from './app-routing.module';
 import {DashboardPageComponent} from './pages/dashboard-page/dashboard-page.component';
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatTableModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatTableModule} from '@angular/material';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardPageComponent,
-    TodoListComponent
+    TodoListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,11 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,48 +1,6 @@
 {
   "list": [
     {
-      "id": 123,
-      "name": "illo expedita consequatur quia in",
-      "description": "illo expedita consequatur quia in",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 234,
-      "name": "quo adipisci enim quam ut ab",
-      "description": "quo adipisci enim quam ut ab",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 324,
-      "name": "molestiae perspiciatis ipsa",
-      "description": "molestiae perspiciatis ipsa",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 1044,
-      "name": "illo est ratione doloremque quia maiores aut",
-      "description": "illo est ratione doloremque quia maiores aut",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 2342137,
-      "name": "illo expedita consequatur quia in",
-      "description": "illo expedita consequatur quia in",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 8234234,
-      "name": "quo adipisci enim quam ut ab",
-      "description": "quo adipisci enim quam ut ab",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
       "id": 2349,
       "name": "molestiae perspiciatis ipsa",
       "description": "molestiae perspiciatis ipsa",
@@ -60,13 +18,6 @@
       "id": 437,
       "name": "illo expedita consequatur quia in",
       "description": "illo expedita consequatur quia in",
-      "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
-      "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 8123,
-      "name": "quo adipisci enim quam ut ab",
-      "description": "quo adipisci enim quam ut ab",
       "createdAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)",
       "editedAt": "Wed May 06 2020 20:22:40 GMT+0300 (Eastern European Summer Time)"
     },
