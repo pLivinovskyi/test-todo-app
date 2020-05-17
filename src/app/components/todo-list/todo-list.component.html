@@ -11,14 +11,14 @@
     </ng-container>
 
     <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef> createdAt </th>
-        <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="editedAt">
-        <th mat-header-cell *matHeaderCellDef> editedAt </th>
-        <td mat-cell *matCellDef="let element"> {{element.editedAt}} </td>
+        <th mat-header-cell *matHeaderCellDef> Edited at </th>
+        <td mat-cell *matCellDef="let element"> {{element.editedAt | date}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">

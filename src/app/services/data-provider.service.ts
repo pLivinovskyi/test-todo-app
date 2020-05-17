@@ -34,7 +34,8 @@ export class DataProviderService {
   }
 
   public updateCurrentRow(recordId: number, newValues: any) {
-    this.updateRecord(recordId, newValues)
+    const createdAt = new Date();
+    this.updateRecord(recordId, {...newValues, ...{createdAt}})
       .then((result: TodoItem) => {
         const array = this.dataSource$.value;
         const index = array.findIndex(el => el.id === recordId);
