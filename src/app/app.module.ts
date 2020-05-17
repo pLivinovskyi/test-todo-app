@@ -7,11 +7,11 @@ import {DashboardPageComponent} from './pages/dashboard-page/dashboard-page.comp
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { PreviewItemDialogComponent } from './components/dialogs/preview-item-dialog/preview-item-dialog.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ConfirmationDialogComponent} from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import {PreviewItemDialogComponent} from './components/dialogs/preview-item-dialog/preview-item-dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
+import {LoginPageComponent} from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [

@@ -3,16 +3,18 @@
     {
       "createdAt": "5/17/2020, 11:47:08 PM",
       "updatedAt": "5/17/2020, 11:47:08 PM",
-      "name": "create component",
+      "name": "create component 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      "id": 1
+      "id": 1,
+      "editedAt": "5/18/2020, 1:01:57 AM"
     },
     {
       "createdAt": "5/17/2020, 11:48:10 PM",
       "updatedAt": "5/17/2020, 11:48:10 PM",
-      "name": "run hooks",
+      "name": "run hooks asd asda das dsad asd",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      "id": 3
+      "id": 3,
+      "editedAt": "5/18/2020, 1:02:10 AM"
     },
     {
       "createdAt": "5/17/2020, 11:48:10 PM",
@@ -39,8 +41,9 @@
       "createdAt": "5/17/2020, 11:48:10 PM",
       "updatedAt": "5/17/2020, 11:48:10 PM",
       "name": "wash dishes",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      "id": 7
+      "description": "dsadsad",
+      "id": 7,
+      "editedAt": "5/18/2020, 1:02:24 AM"
     },
     {
       "createdAt": "5/18/2020, 12:48:16 AM",

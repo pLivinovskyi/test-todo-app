@@ -14,13 +14,8 @@ export class DataProviderService {
   constructor(private httpClient: HttpClient) {
   }
 
-  updateData() {
+  public updateData() {
     this.getListData().then(res => this.dataSource$.next(res));
-  }
-
-
-  private getListData(): Promise<TodoItem[]> {
-    return this.httpClient.get<TodoItem[]>(serverApi + 'list').toPromise();
   }
 
   public removeRecord(id: number): void {
@@ -52,6 +47,9 @@ export class DataProviderService {
         array.push(result);
         this.dataSource$.next(array.slice());
       });
+  }
+  private getListData(): Promise<TodoItem[]> {
+    return this.httpClient.get<TodoItem[]>(serverApi + 'list').toPromise();
   }
 
   private deleteItem(id: number): Promise<{}> {

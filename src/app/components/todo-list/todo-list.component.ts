@@ -24,7 +24,6 @@ export class TodoListComponent implements OnInit {
     this.dataProviderService.updateData();
   }
 
-
   editRecord(event, tableRow: TodoItem): void {
     event.stopPropagation();
     const dialog = this.dialog.open(PreviewItemDialogComponent, {
@@ -38,7 +37,6 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-
   deleteRecord(event, tableRow: TodoItem): void {
     event.stopPropagation();
     this.confirmationDialogService.openConfirmationDialog(DialogTypes.DELETE)
@@ -48,8 +46,4 @@ export class TodoListComponent implements OnInit {
         }
       });
   }
-
-
-
-
 }
