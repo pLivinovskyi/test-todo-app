@@ -4,6 +4,7 @@ import {DataProviderService} from '../../services/data-provider.service';
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 import {DialogTypes} from '../../enums';
+import {PreviewItemDialogComponent} from '../dialogs/preview-item-dialog/preview-item-dialog.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -25,6 +26,19 @@ export class TodoListComponent implements OnInit {
   }
 
   editRecord(event, tableRow: TodoItem): void {
+    event.stopPropagation();
+
+    const dialog = this.dialog.open(PreviewItemDialogComponent, {
+      hasBackdrop: false,
+      data: {type: DialogTypes.EDIT, currentRow: tableRow}
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result.type === DialogTypes.DELETE) {
+        this.removeRecord(tableRow.id);
+      } else if (result.type === DialogTypes.EDIT) {
+        this.updateRecord(tableRow.id, result.values);
+      }
+    });
   }
 
   deleteRecord(event, tableRow: TodoItem): void {
@@ -37,12 +51,7 @@ export class TodoListComponent implements OnInit {
 
     dialog.afterClosed().subscribe(isConfirmed => {
       if (isConfirmed) {
-        this.dataProviderService.deleteItem(tableRow.id)
-          .then(result => {
-            const index = this.dataSource.findIndex(el => el.id === tableRow.id);
-            this.dataSource.splice(index, 1);
-            this.dataSource = this.dataSource.slice();
-          });
+        this.removeRecord(tableRow.id);
       }
     });
   }
@@ -50,6 +59,24 @@ export class TodoListComponent implements OnInit {
   private updateData() {
     this.dataProviderService.getListData()
       .then(result => this.dataSource = result);
+  }
+
+  private removeRecord(id: number): void {
+    this.dataProviderService.deleteItem(id)
+      .then(result => {
+        const index = this.dataSource.findIndex(el => el.id === id);
+        this.dataSource.splice(index, 1);
+        this.dataSource = this.dataSource.slice();
+      });
+  }
+
+  private updateRecord(recordId: number, newValues: any) {
+    this.dataProviderService.updateRecord(recordId, newValues)
+      .then((result: TodoItem) => {
+        const index = this.dataSource.findIndex(el => el.id === recordId);
+        this.dataSource.splice(index, 1, result);
+        this.dataSource = this.dataSource.slice();
+  });
   }
 
 }

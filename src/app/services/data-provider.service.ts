@@ -16,7 +16,11 @@ export class DataProviderService {
     return this.httpClient.get<TodoItem[]>(serverApi + 'list').toPromise();
   }
 
-  deleteItem(id: number): Promise<any> {
+  deleteItem(id: number): Promise<{}> {
     return this.httpClient.delete(serverApi + 'list/' + id).toPromise();
+  }
+
+  updateRecord(id, body): Promise<TodoItem> {
+    return this.httpClient.put(serverApi + 'list/' + id, body).toPromise();
   }
 }
