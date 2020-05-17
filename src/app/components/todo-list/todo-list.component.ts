@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoItem} from '../../interfaces';
+import {DataProviderService} from '../../services/data-provider.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,7 +11,7 @@ export class TodoListComponent implements OnInit {
   dataSource: TodoItem[] = [];
   columnsToShow: string [] = ['position', 'name', 'createdAt', 'editedAt', 'action'];
 
-  constructor() {
+  constructor(private dataProviderService: DataProviderService) {
   }
 
   ngOnInit(): void {
@@ -28,7 +29,8 @@ export class TodoListComponent implements OnInit {
   }
 
   private updateData() {
-
+    this.dataProviderService.getListData()
+      .then(result => this.dataSource = result)
   }
 
 }
