@@ -23,8 +23,8 @@ export class DashboardPageComponent implements OnInit {
     });
     dialog.afterClosed().subscribe(res => {
       if (res) {
-        this.dataProviderService.createRecord(res.values)
+        this.dataProviderService.createRecord(res.values);
       }
-    })
+    });
   }
 }

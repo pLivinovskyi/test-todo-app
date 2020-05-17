@@ -24,8 +24,6 @@ export class TodoListComponent implements OnInit {
     this.dataProviderService.updateData();
   }
 
-  showRecord(tableRow: TodoItem): void {
-  }
 
   editRecord(event, tableRow: TodoItem): void {
     event.stopPropagation();
