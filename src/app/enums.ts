@@ -1,5 +1,5 @@
 export enum DialogTypes {
-  READONLY = 'readonly',
+  CREATE = 'create',
   EDIT = 'edit',
   DELETE = 'delete'
 }

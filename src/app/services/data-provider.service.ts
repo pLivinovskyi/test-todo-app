@@ -21,6 +21,6 @@ export class DataProviderService {
   }
 
   updateRecord(id, body): Promise<TodoItem> {
-    return this.httpClient.put(serverApi + 'list/' + id, body).toPromise();
+    return this.httpClient.put<TodoItem>(serverApi + 'list/' + id, body).toPromise();
   }
 }

@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {TodoItem} from '../../interfaces';
 import {DataProviderService} from '../../services/data-provider.service';
 import {MatDialog} from '@angular/material';
-import {ConfirmationDialogComponent} from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 import {DialogTypes} from '../../enums';
 import {PreviewItemDialogComponent} from '../dialogs/preview-item-dialog/preview-item-dialog.component';
+import {ConfirmationDialogService} from '../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,7 +15,10 @@ export class TodoListComponent implements OnInit {
   dataSource: TodoItem[] = [];
   columnsToShow: string [] = ['position', 'name', 'createdAt', 'editedAt', 'action'];
 
-  constructor(private dataProviderService: DataProviderService, private dialog: MatDialog) {
+  constructor(
+    private dataProviderService: DataProviderService,
+    private dialog: MatDialog,
+    private confirmationDialogService: ConfirmationDialogService) {
   }
 
   ngOnInit(): void {
@@ -36,24 +39,20 @@ export class TodoListComponent implements OnInit {
       if (result.type === DialogTypes.DELETE) {
         this.removeRecord(tableRow.id);
       } else if (result.type === DialogTypes.EDIT) {
-        this.updateRecord(tableRow.id, result.values);
+        this.updateRecord(tableRow.id, {...tableRow, ...result.values});
       }
     });
   }
 
+
   deleteRecord(event, tableRow: TodoItem): void {
     event.stopPropagation();
-
-    const dialog = this.dialog.open(ConfirmationDialogComponent, {
-      hasBackdrop: false,
-      data: {type: DialogTypes.DELETE}
-    });
-
-    dialog.afterClosed().subscribe(isConfirmed => {
-      if (isConfirmed) {
-        this.removeRecord(tableRow.id);
-      }
-    });
+    this.confirmationDialogService.openConfirmationDialog(DialogTypes.DELETE)
+      .subscribe(isConfirmed => {
+        if (isConfirmed) {
+          this.removeRecord(tableRow.id);
+        }
+      });
   }
 
   private updateData() {
@@ -76,7 +75,7 @@ export class TodoListComponent implements OnInit {
         const index = this.dataSource.findIndex(el => el.id === recordId);
         this.dataSource.splice(index, 1, result);
         this.dataSource = this.dataSource.slice();
-  });
+      });
   }
 
 }
